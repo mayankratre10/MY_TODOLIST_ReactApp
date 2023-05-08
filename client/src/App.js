@@ -6,20 +6,16 @@ import Todos from "./myComponents/Todos";
 import Footer from "./myComponents/Footer";
 import About from "./About";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import axios from 'axios';
+axios.defaults.baseURL = 'http://localhost:5000';
 function App() {
-  let initTodo;
-  if (localStorage.getItem("todos") === null) {
-    initTodo = [];
-  } else {
-    initTodo = JSON.parse(localStorage.getItem("todos"));
-  }
-
+  let initTodo=[];
   const onDelete = (todo) => {
     console.log("onDelete Clicked" + todo);
+    axios.post('/delete',todo).then(function (response) {settodos(response.data)})
+    .catch(function (error) {console.log(error);})
     settodos(todos.filter((a) => a !== todo));
-    localStorage.setItem("todos", JSON.stringify(todos));
   };
   const addTodo = (tittle, desc) => {
     let sno;
@@ -31,10 +27,14 @@ function App() {
       desc: desc,
     };
     settodos([...todos, mytodo]);
+    axios.post('/', { mytodo }).catch(function (error) {console.log(error);});
   };
   const [todos, settodos] = useState(initTodo);
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
+  useEffect(()=>{
+    axios.get('/').then(function (response) {settodos(response.data)})
+  .catch(function (error) {console.log(error);})
+  },[])
+  useEffect(() => {;
   }, [todos]);
 
   return (

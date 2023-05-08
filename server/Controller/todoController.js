@@ -3,6 +3,7 @@ const { todoModel } = require('../Model/todoModel');
 const getTodos = async (req, res) => {
     try {
         let todos = await todoModel.find({});
+        console.log(todos);
         res.send(todos);
     }
     catch (err) {

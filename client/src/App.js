@@ -8,7 +8,6 @@ import About from "./About";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:5000';
 function App() {
   let initTodo=[];
   const onDelete = (todo) => {
@@ -27,11 +26,11 @@ function App() {
       desc: desc,
     };
     settodos([...todos, mytodo]);
-    axios.post('/', { mytodo }).catch(function (error) {console.log(error);});
+    axios.post('/add', { mytodo }).catch(function (error) {console.log(error);});
   };
   const [todos, settodos] = useState(initTodo);
   useEffect(()=>{
-    axios.get('/').then(function (response) {settodos(response.data)})
+    axios.get('/get').then(function (response) {settodos(response.data)})
   .catch(function (error) {console.log(error);})
   },[])
   useEffect(() => {;

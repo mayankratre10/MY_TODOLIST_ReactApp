@@ -7,7 +7,9 @@ const About = () => {
   return (
     <div style={mystyle} className="container">
       <h4>This is About my app!</h4>
-      <p>faldkfeoiuroie earoiriojfdf ifmadlfje4ijfadmfd;lkajef</p>
+      <p>This Simple React App, TodoList for listing your day to day todos,
+        This will save your todos to mongodb database so you won't loose any
+      </p>
     </div>
   )
 }

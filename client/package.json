@@ -44,5 +44,5 @@
   "devDependencies": {
     "gh-pages": "^5.0.0"
   },
-  "proxy":"https://server-todolist-mqyv.onrender.com/"
+  "proxy": "https://server-todolist-mqyv.onrender.com"
 }

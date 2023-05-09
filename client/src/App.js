@@ -8,6 +8,7 @@ import About from "./About";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from 'axios';
+axios.defaults.baseURL="https://server-todolist-mqyv.onrender.com";
 function App() {
   let initTodo=[];
   const onDelete = (todo) => {
@@ -41,9 +42,9 @@ function App() {
       <Router>
         <Header tittle="My TodoList" searchBar={false} />
         <Routes>
-          <Route path="/about" element={<About />}></Route>
+          <Route path="/MY_TODOLIST_ReactApp/about" element={<About />}></Route>
           <Route
-            path="/"
+            path="/MY_TODOLIST_ReactApp/"
             element={
               <>
                 <AddTodo addTodo={addTodo} />
